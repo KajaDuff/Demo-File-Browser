@@ -10,20 +10,32 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
+    "@emotion/eslint-plugin": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",
     "@mui/material-nextjs": "^5.15.11",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "axios": "^1.6.8",
+    "eslint-plugin-sort-keys": "^2.3.5",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-typescript-sort-keys": "^3.2.0",
+    "eslint-plugin-unused-imports": "^3.2.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
     "typescript": "^5"
   }
 }
