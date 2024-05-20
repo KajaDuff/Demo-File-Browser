@@ -3,12 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"author": "Karolina Duffield",
-	"license": "MIT",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"ts-check": "tsc --noEmit",
+		"health-check": "yarn lint && yarn ts-check"
 	},
 	"dependencies": {
 		"@emotion/cache": "^11.11.0",

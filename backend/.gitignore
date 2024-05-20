@@ -26,5 +26,9 @@ yarn-error.log*
 # Next.js build output
 .next
 
+# Nuxt.js build / generate output
+.nuxt
+dist
+
 # Mac files
 .DS_Store

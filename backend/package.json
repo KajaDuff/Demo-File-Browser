@@ -4,10 +4,13 @@
   "main": "server.js",
   "private": true,
   "author": "Karolina Duffield",
-  "license": "MIT",
   "scripts": {
+    "clean": "rimraf dist/ && tsc",
     "dev": "ts-node-dev ./src/server.ts",
-    "lint": "eslint src/**/*.ts"
+    "health-check": "yarn lint --no-warn-ignored && yarn ts-check",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "sort-package-json \"package.json\" \"packages/**/package.json\"  && prettier --write \"**/*.{css,scss,less,md,json,html,ts,yaml}\" --config ./.prettierrc.json && yarn lint --fix && yarn ts-check",
+    "ts-check": "yarn tsc --project ./tsconfig.json"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -29,6 +32,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.2.0",
+    "rimraf": "^5.0.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.9.0"
