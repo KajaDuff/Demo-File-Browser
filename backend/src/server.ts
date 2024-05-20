@@ -1,16 +1,16 @@
-// src/index.js
 import express, {
   type NextFunction,
   type Request,
   type Response,
 } from "express";
-import fs from "node:fs";
+
 import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
 import { PORT } from "./constants/env";
 import { ApiRequest } from "./types/request";
-import { ApiResponse, FileTypeEnum } from "./types/response";
+import { ApiResponse } from "./types/response";
+import { listFilesAndDirectories } from "./utils/listDirContents";
 
 dotenv.config();
 
@@ -73,30 +73,3 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 app.listen(PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${PORT}`);
 });
-
-const listFilesAndDirectories = async (directoryPath: string) => {
-  try {
-    const files = await fs.promises.readdir(directoryPath);
-
-    const statsPromises = files.map(async (file) => {
-      const filePath = path.join(directoryPath, file);
-      const stats = await fs.promises.lstat(filePath);
-      const type: FileTypeEnum = stats.isDirectory()
-        ? FileTypeEnum.Directory
-        : FileTypeEnum.File;
-
-      return {
-        name: file,
-        type,
-        filePath,
-      };
-    });
-
-    const stats = await Promise.all(statsPromises);
-
-    return stats;
-  } catch (err: unknown) {
-    // TODO:
-    console.error("Error reading directory:", err);
-  }
-};

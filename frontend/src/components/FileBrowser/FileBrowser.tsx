@@ -4,11 +4,11 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { usePathname, useRouter } from 'next/navigation'
 
-import { Typography } from '@mui/material'
-
 import { getDirectoryContents } from '@/api/api'
 import { Table } from '@/components/Table/Table'
 import { ApiResponse } from '@/types/response'
+
+import BreadcrumbsComponent from '../Breadcrumbs/Breadcrumbs'
 
 export const FileBrowser: React.FC = () => {
 	const router = useRouter()
@@ -21,19 +21,18 @@ export const FileBrowser: React.FC = () => {
 				const directoryContents = await getDirectoryContents({ filePath })
 				setData(directoryContents)
 			} catch (error: any) {
-				// TODO: move to constants
 				router.push('/error')
 			}
 		},
 		[router]
 	)
 
-	// fetch defaultdirectory content
+	// fetch default directory content
 	useEffect(() => {
 		fetchData(urlPath)
 	}, [fetchData, router, urlPath])
 
-	// fetch content based on selcted directory
+	// fetch content based on selected directory
 	const handleRowClick = useCallback(
 		(path: string) => {
 			if (!path) return
@@ -41,10 +40,11 @@ export const FileBrowser: React.FC = () => {
 		},
 		[router]
 	)
+
 	if (!data?.contents) return
 	return (
 		<>
-			<Typography variant="h4">{`Current directory: ${data.currentDirName}`}</Typography>
+			<BreadcrumbsComponent />
 			<Table data={data.contents} onRowClick={handleRowClick} backPath={data.parentDirPath} />
 		</>
 	)
