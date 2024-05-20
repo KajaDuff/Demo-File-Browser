@@ -1,12 +1,12 @@
 import { Container } from '@mui/material'
 
-import { AppBar } from '@/components/AppBar/AppBar'
+import AppBarComponent from '@/components/AppBarComponent/AppBarComponent'
 import { FileBrowser } from '@/components/FileBrowser/FileBrowser'
 
 export default function BrowserPage() {
 	return (
 		<main>
-			<AppBar />
+			<AppBarComponent />
 			<Container fixed maxWidth="md">
 				<FileBrowser />
 			</Container>

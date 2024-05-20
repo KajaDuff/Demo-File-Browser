@@ -6,6 +6,7 @@ export interface ApiResponse {
 }
 
 export interface Contents {
+	[key: string]: string | number | boolean
 	filePath: string
 	name: string
 	type: FileTypeEnum
